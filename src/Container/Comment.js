@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { AddCommentForm } from '../Component/AddCommentForm';
 import { CommentList } from '../Component/CommentList';
 import { faSort } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useSortOrder from '../hooks/useSortOrder';
+import CommentForm from '../Component/CommentForm';
 
 const CommentComponent = () => {
     const [comments, setComments] = useState(
         JSON.parse(localStorage.getItem('comments')) || []
     );
-    const [sortOrder, setSortOrder] = useState('desc');
+
+    const { sortOrder, toggleSortOrder } = useSortOrder();
+
 
     useEffect(() => {
         localStorage.setItem('comments', JSON.stringify(comments));
@@ -74,15 +77,16 @@ const CommentComponent = () => {
         setComments((prevComments) => recursiveDelete(prevComments));
     };
 
-    const handleSort = () => {
-        setSortOrder((prevOrder) => (prevOrder === 'asc' ? 'desc' : 'asc'));
-    };
-
     return (
         <div className="comment-container">
-            <AddCommentForm onAddComment={handleAddComment} />
+            <CommentForm
+                buttonText="Post"
+                initialValues={{ name: '', text: '' }}
+                validationPattern={{ name: /\S/, text: /\S/ }}
+                onSubmit={(formData) => handleAddComment({ ...formData, timestamp: new Date() })}
+            />
             <div className='sort-action'>
-                <button onClick={handleSort}>
+                <button className="sort-btn" onClick={toggleSortOrder}>
                     Sort by: Date and Time <FontAwesomeIcon icon={faSort} color='grey' />
                 </button>
             </div>

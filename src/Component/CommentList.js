@@ -2,45 +2,23 @@ import React, { useState } from 'react';
 import '../App.css';
 import { getCustomDate } from '../utils/date';
 import EditCommentForm from './EditCommentForm';
-import ReplyCommentForm from './ReplyCommentForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import CommentForm from './CommentForm';
 
 
 const Comment = ({ comment, onEdit, onDelete, onReply }) => {
     const [isEditing, setEditing] = useState(false);
     const [editedText, setEditedText] = useState(comment.text);
     const [isReplying, setReplying] = useState(false);
-    // eslint-disable-next-line
-    const [replyOptions, setReplyOptions] = useState(false);
-
-    const handleEdit = () => {
-        setEditing(true);
-    };
 
     const handleSave = () => {
         onEdit(comment.id, editedText);
         setEditing(false);
     };
 
-    const handleDelete = () => {
-        onDelete(comment.id);
-    };
-
-    const handleReply = () => {
-        setReplying(true);
-        setReplyOptions(true);
-    };
-
-    const handleCancelReply = () => {
-        setReplying(false);
-        setReplyOptions(false);
-    };
-
     const handleReplySave = (data) => {
-        onReply(comment.id, data.name, data.comment);
-        setReplying(false);
-        setReplyOptions(false);
+
     };
 
     return (
@@ -60,19 +38,28 @@ const Comment = ({ comment, onEdit, onDelete, onReply }) => {
                 ) : (
                     <div>
                         <p className='text-align-left'>{comment.text}</p>
-                        <div className='form-base-actions'>
-                            <button onClick={handleReply}>Reply</button>
-                            <button onClick={handleEdit}>Edit</button>
+                        <div className='form-base-actions-parent'>
+                            <button onClick={() => setReplying(true)}>Reply</button>
+                            <button onClick={() => setEditing(true)}>Edit</button>
                         </div>
-                        <FontAwesomeIcon icon={faTrash} color='grey' className="delete-btn" onClick={handleDelete} />
+                        <FontAwesomeIcon icon={faTrash} color='grey' className="delete-btn" onClick={() => onDelete(comment.id)} />
                     </div>
                 )}
             </div>
             {isReplying && (
                 <div className='margin-left'>
-                    <ReplyCommentForm
-                        onReplySave={handleReplySave}
-                        onReplyCancel={handleCancelReply}
+                    <CommentForm
+                        label='Reply'
+                        buttonText="Submit Reply"
+                        initialValues={{ name: '', text: '' }}
+                        validationPattern={{ name: /\S/, text: /\S/ }}
+                        onSubmit={(formData) => {
+                            onReply(comment.id, formData.name, formData.text);
+                            setReplying(false);
+                        }}
+                        onCancelClick={() => {
+                            setReplying(false);
+                        }}
                     />
                 </div>
             )}
