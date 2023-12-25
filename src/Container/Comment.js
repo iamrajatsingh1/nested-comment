@@ -88,8 +88,9 @@ const CommentComponent = () => {
             </div>
             <CommentList
                 comments={[...comments].sort((a, b) => {
-                    const timestampA = a?.timestamp instanceof Date ? a.timestamp.getTime() : 0;
-                    const timestampB = b?.timestamp instanceof Date ? b.timestamp.getTime() : 0;
+                    const timestampA = a?.timestamp instanceof Date ? a.timestamp : new Date(a.timestamp);
+                    const timestampB = b?.timestamp instanceof Date ? b.timestamp : new Date(b.timestamp);
+            
                     return sortOrder === 'asc' ? timestampA - timestampB : timestampB - timestampA;
                 })}
                 onEdit={handleEditComment}
