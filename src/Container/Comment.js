@@ -80,10 +80,10 @@ const CommentComponent = () => {
     return (
         <div className="comment-container">
             <CommentForm
+                onSubmit={(formData) => handleAddComment({ ...formData, timestamp: new Date() })}
                 buttonText="Post"
                 initialValues={{ name: '', text: '' }}
                 validationPattern={{ name: /\S/, text: /\S/ }}
-                onSubmit={(formData) => handleAddComment({ ...formData, timestamp: new Date() })}
             />
             <div className='sort-action'>
                 <button className="sort-btn" onClick={toggleSortOrder}>
