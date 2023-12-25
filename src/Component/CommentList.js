@@ -17,10 +17,6 @@ const Comment = ({ comment, onEdit, onDelete, onReply }) => {
         setEditing(false);
     };
 
-    const handleReplySave = (data) => {
-
-    };
-
     return (
         <div>
             <div className="comment">
