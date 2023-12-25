@@ -1,0 +1,162 @@
+.App {
+  text-align: center;
+  margin: 20px;
+}
+
+.comment-container {
+  text-align: center;
+  margin: 20px;
+}
+
+/* Add Comment Form */
+.comment-form {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: whitesmoke;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.comment-form button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.comment-form button:hover {
+  background-color: #0056b3;
+}
+
+.sort-action {
+  display: flex;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.comment {
+  padding: 15px;
+  margin: 30px 0;
+  border: 1px solid darkgrey;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.comment-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.comment-user-name {
+  font-weight: bold;
+}
+
+.text-align-left {
+  text-align: left;
+}
+
+.form-base-actions {
+  display: flex;
+  justify-content: left;
+  gap: inherit;
+}
+
+.form-base-actions button {
+  background-color: transparent;
+  color: #007bff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.delete-btn {
+  background-color: transparent;
+  padding: 8px;
+  border-radius: 19px;
+  float: inline-end;
+  cursor: pointer;
+}
+
+.delete-btn :hover {
+  color: red;
+  transform: scale(1.2);
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.comment-list {
+  margin-top: 20px;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 15px;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: whitesmoke;
+  text-align: left;
+}
+
+.form-base {
+  margin: 20px auto;
+  gap: 20px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-base input,
+.form-base textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-base button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.form-base button:hover {
+  background-color: #0056b3;
+}
+
+.margin-left {
+  margin-left: 40px;
+}
